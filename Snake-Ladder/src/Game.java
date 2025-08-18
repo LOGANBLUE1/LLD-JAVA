@@ -32,6 +32,7 @@ public class Game {
                         System.out.println(name + " wins the game");
                         player.finished = true;
                         playersPlaying--;
+                        break;
                     }
                 }
             }
