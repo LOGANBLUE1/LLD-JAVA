@@ -4,6 +4,7 @@ public class Circle extends Shape {
     public int radius;
 
     public Circle() {
+        System.out.println("Circle created.");
     }
 
     public Circle(Circle target) {
