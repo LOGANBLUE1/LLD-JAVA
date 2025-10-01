@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 public class Board {
     int size;
@@ -16,14 +17,22 @@ public class Board {
     }
 
     public void addSnake(Snake snake) {
-        if (snake.start > snake.end)
-            this.snakes.put(snake.start, snake.end);
+        if(ladders.containsKey(snake.tail()) && snakes.get(snake.tail()).equals(snake.head())) {
+            System.out.println("Snake and ladder cannot be at same position");
+            return;
+        }
+        if (snake.head() > snake.tail())
+            this.snakes.put(snake.head(), snake.tail());
     }
 
 
     public void addLadder(Ladder ladder) {
-        if (ladder.start < ladder.end)
-            this.ladders.put(ladder.start, ladder.end);
+        if(snakes.containsKey(ladder.top()) && snakes.get(ladder.top()).equals(ladder.bottom())) {
+            System.out.println("Snake and ladder cannot be at same position");
+            return;
+        }
+        if (ladder.bottom() < ladder.top())
+            this.ladders.put(ladder.bottom(), ladder.top());
     }
 
     public int movePiece(int currentPos, int number){
@@ -39,28 +48,32 @@ public class Board {
         return nextPos;
     }
 
-    public Board getDefaultSnakes() {
-        this.addSnake(new Snake(62, 5));
-        this.addSnake(new Snake(33, 6));
-        this.addSnake(new Snake(49, 9));
-        this.addSnake(new Snake(88, 16));
-        this.addSnake(new Snake(41, 20));
-        this.addSnake(new Snake(56, 53));
-        this.addSnake(new Snake(98, 64));
-        this.addSnake(new Snake(93, 73));
-        this.addSnake(new Snake(95, 75));
-        return this;
+    public void getDefaultSnakes() {
+        List<Snake> defaultSnakes = List.of(
+                new Snake(62, 5),
+                new Snake(33, 6),
+                new Snake(49, 9),
+                new Snake(88, 16),
+                new Snake(41, 20),
+                new Snake(56, 53),
+                new Snake(98, 64),
+                new Snake(93, 73),
+                new Snake(95, 75)
+        );
+        defaultSnakes.forEach(this::addSnake);
     }
 
-    public Board getDefaultLadders() {
-        this.addLadder(new Ladder(2, 37));
-        this.addLadder(new Ladder(27, 46));
-        this.addLadder(new Ladder(10, 32));
-        this.addLadder(new Ladder(51, 68));
-        this.addLadder(new Ladder(61, 79));
-        this.addLadder(new Ladder(65, 84));
-        this.addLadder(new Ladder(71, 91));
-        this.addLadder(new Ladder(81, 100));
-        return this;
+    public void getDefaultLadders() {
+        List<Ladder> defaultLadders = List.of(
+                new Ladder(2, 37),
+                new Ladder(27, 46),
+                new Ladder(10, 32),
+                new Ladder(51, 68),
+                new Ladder(61, 79),
+                new Ladder(65, 84),
+                new Ladder(71, 91),
+                new Ladder(81, 100)
+        );
+        defaultLadders.forEach(this::addLadder);
     }
 }

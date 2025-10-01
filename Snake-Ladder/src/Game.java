@@ -8,7 +8,7 @@ public class Game {
 
 
     public Game(){
-        this.board = new Board().getDefaultSnakes().getDefaultLadders();
+        this.board = new Board();
         this.dice = new Dice(1);
         players = new ArrayList<>();
     }
@@ -37,6 +37,11 @@ public class Game {
                 }
             }
         }
+    }
+
+    public void takeDefaultSnakeLadderInput(){
+        this.board.getDefaultSnakes();
+        this.board.getDefaultLadders();
     }
 
     public void takeSnakeLadderInput(){

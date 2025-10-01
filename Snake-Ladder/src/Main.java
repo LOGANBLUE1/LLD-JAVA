@@ -8,6 +8,8 @@ public class Main {
         Game game = new Game();
         if((Objects.equals(input.toUpperCase(), "Y")))
             game.takeSnakeLadderInput();
+        else
+            game.takeDefaultSnakeLadderInput();
 
         game.takePlayerInput();
         game.playGame();

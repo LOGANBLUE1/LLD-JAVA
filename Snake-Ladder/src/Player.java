@@ -14,20 +14,6 @@ public class Player {
 }
 
 
+record Snake(int head, int tail) {}
 
-
-class Snake {
-    int start, end;
-    Snake(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-}
-
-class Ladder {
-    int start, end;
-    Ladder(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-}
+record Ladder(int bottom, int top) {}
