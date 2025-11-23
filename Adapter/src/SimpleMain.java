@@ -11,7 +11,7 @@ class DefaultPayment implements PaymentProcessor {
     }
 }
 
-class Paypalpay{
+class Paypalpay {
 
     public void makePayment(int amount) {
         System.out.println("Processing PayPal payment of amount: " + amount);

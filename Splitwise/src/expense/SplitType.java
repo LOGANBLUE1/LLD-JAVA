@@ -1,0 +1,5 @@
+package expense;
+
+public enum SplitType {
+    EQUAL, EXACT, PERCENT
+}
