@@ -1,0 +1,7 @@
+package designProblemsAndGames.Trello;
+
+public class User {
+    String id;
+    String name;
+    String email;
+}
