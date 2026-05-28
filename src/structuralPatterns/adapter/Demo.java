@@ -27,5 +27,6 @@ public class Demo {
         if (!hole.fits(largeSqPegAdapter)) {
             System.out.println("Square peg w20 does not fit into round hole r5.");
         }
+        System.out.println(Math.sqrt(Math.pow((4), 2) * 2));
     }
 }
