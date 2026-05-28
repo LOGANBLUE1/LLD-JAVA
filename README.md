@@ -36,7 +36,7 @@ LLD-JAVA/
 │   │   ├── Shapes/
 │   │   └── Trello/
 │   ├── factory/
-│   ├── prototype/
+│   ├── creationalPatterns.Prototype.prototype/
 │   └── Main.java
 ├── out/ (compiled classes)
 ├── .gitignore
@@ -165,14 +165,14 @@ java creationalPatterns.singleton.DemoMultiThread
 ```bash
 cd out
 java creationalPatterns.Factory.Main
-java factory.Demo
+java creationalPatterns.Factory.example2.Demo
 ```
 
 **Run Prototype Pattern:**
 ```bash
 cd out
 java creationalPatterns.Prototype.Main
-java prototype.Demo
+java creationalPatterns.Prototype.prototype.Demo
 ```
 
 #### 3. Run Design Problems

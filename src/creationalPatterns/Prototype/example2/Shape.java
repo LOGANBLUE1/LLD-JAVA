@@ -1,4 +1,4 @@
-package prototype;
+package creationalPatterns.Prototype.example2;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package factory;
+package creationalPatterns.Factory.example2;
 
 public abstract class AnimalOptions implements Animal{
     public String milkType;

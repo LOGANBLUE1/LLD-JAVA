@@ -1,8 +1,8 @@
-package factory;
+package creationalPatterns.Factory.example2;
 
 public class Demo {
     void main(){
-        var animal = Factory.getAnimal(3);
+        var animal = Factory.getAnimal(4);
         animal.setType("Chocolate");
         animal.milk();
         System.out.println(animal.getMilkType());

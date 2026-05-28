@@ -1,4 +1,4 @@
-package prototype;
+package creationalPatterns.Prototype.example2;
 
 public class Rectangle extends Shape {
     public int width;

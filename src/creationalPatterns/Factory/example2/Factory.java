@@ -1,4 +1,4 @@
-package factory;
+package creationalPatterns.Factory.example2;
 
 public class Factory {
     public static Animal getAnimal(int nipples) {
