@@ -1,4 +1,4 @@
-package structuralPatterns.composite.example2;
+package structuralPatterns.composite;
 
 import java.util.*;
 
