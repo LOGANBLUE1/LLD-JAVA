@@ -9,7 +9,7 @@ import structuralPatterns.composite.shapes.Dot;
 import java.awt.*;
 
 public class Demo {
-    void main() {
+    public static void main(String []args) {
             ImageEditor editor = new ImageEditor();
 
             editor.loadShapes(
