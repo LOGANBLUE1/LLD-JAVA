@@ -1,7 +1,10 @@
-package structuralPatterns.decorator;
+package structuralPatterns.decorator.addables;
+
+import structuralPatterns.decorator.Notifier;
+import structuralPatterns.decorator.NotifierDecorator;
 
 // Concrete decorators
-class SMSNotifier extends NotifierDecorator {
+public class SMSNotifier extends NotifierDecorator {
     public SMSNotifier(Notifier notifier) {
         super(notifier);
     }

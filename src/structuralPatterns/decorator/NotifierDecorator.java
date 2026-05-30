@@ -1,7 +1,7 @@
 package structuralPatterns.decorator;
 
 // Decorator base
-class NotifierDecorator implements Notifier {
+public class NotifierDecorator implements Notifier {
     protected Notifier notifier;
 
     public NotifierDecorator(Notifier notifier) {

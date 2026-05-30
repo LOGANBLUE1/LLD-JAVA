@@ -1,5 +1,5 @@
 package structuralPatterns.decorator;
 
-interface Notifier {
+public interface Notifier {
     void send(String message);
 }

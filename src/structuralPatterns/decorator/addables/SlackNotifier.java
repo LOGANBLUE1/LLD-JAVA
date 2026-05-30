@@ -1,6 +1,9 @@
-package structuralPatterns.decorator;
+package structuralPatterns.decorator.addables;
 
-class SlackNotifier extends NotifierDecorator {
+import structuralPatterns.decorator.Notifier;
+import structuralPatterns.decorator.NotifierDecorator;
+
+public class SlackNotifier extends NotifierDecorator {
     public SlackNotifier(Notifier notifier) {
         super(notifier);
     }
