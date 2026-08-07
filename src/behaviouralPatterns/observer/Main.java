@@ -1,8 +1,8 @@
-package behaviouralPatterns.Observer;
+package behaviouralPatterns.observer;
 
-import behaviouralPatterns.Observer.editor.Editor;
-import behaviouralPatterns.Observer.listener.EmailNotificationListener;
-import behaviouralPatterns.Observer.listener.LogOpenListener;
+import behaviouralPatterns.observer.editor.Editor;
+import behaviouralPatterns.observer.listener.EmailNotificationListener;
+import behaviouralPatterns.observer.listener.LogOpenListener;
 
 public class Main {
     void main() {

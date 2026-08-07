@@ -1,4 +1,4 @@
-package behaviouralPatterns.Observer.listener;
+package behaviouralPatterns.observer.listener;
 
 import java.io.File;
 

@@ -20,13 +20,13 @@ public class Demo {
 
         // All checks are linked. Client can build various chains using the same
         // components.
-//        Middleware middleware = Middleware.link(
-//                new ThrottlingMiddleware(2),
-//                new UserExistsMiddleware(server),
-//                new RoleCheckMiddleware()
-//        );
-//        // Server gets a chain from client code.
-//        server.setMiddleware(middleware);
+        Middleware middleware = Middleware.link(
+                new ThrottlingMiddleware(2),
+                new UserExistsMiddleware(server),
+                new RoleCheckMiddleware()
+        );
+        // Server gets a chain from client code.
+        server.setMiddleware(middleware);
     }
 
     void main(String[] args) throws IOException {

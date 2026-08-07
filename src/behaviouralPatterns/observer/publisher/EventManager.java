@@ -1,6 +1,6 @@
-package behaviouralPatterns.Observer.publisher;
+package behaviouralPatterns.observer.publisher;
 
-import behaviouralPatterns.Observer.listener.EventListener;
+import behaviouralPatterns.observer.listener.EventListener;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package behaviouralPatterns.Observer.editor;
+package behaviouralPatterns.observer.editor;
 
-import behaviouralPatterns.Observer.publisher.EventManager;
+import behaviouralPatterns.observer.publisher.EventManager;
 
 import java.io.File;
 

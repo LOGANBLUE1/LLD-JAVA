@@ -32,16 +32,26 @@ public class Slot implements SlotInterface {
         return this.free;
     }
 
+    // The slot owns its own invariant: fail loudly rather than no-op. A silent no-op here used to
+    // leave the slot in neither freeSlots nor occupied - unbookable and un-freeable forever.
     @Override
     public void occupy(Vehicle vehicle) {
-        if (this.free && vehicle.slotType == this.slotType) {
-            this.parkedVehicle = vehicle;
-            this.free = false;
+        if (!this.free) {
+            throw new IllegalStateException("Slot " + slotNo + " is already occupied");
         }
+        if (vehicle.slotType != this.slotType) {
+            throw new IllegalArgumentException(
+                    "Slot " + slotNo + " is of type " + slotType + ", cannot hold " + vehicle.slotType);
+        }
+        this.parkedVehicle = vehicle;
+        this.free = false;
     }
 
     @Override
     public void free() {
+        if (this.free) {
+            throw new IllegalStateException("Slot " + slotNo + " is already free");
+        }
         this.parkedVehicle = null;
         this.free = true;
     }

@@ -1,16 +1,15 @@
 package behaviouralPatterns.chainOfResponsibility.middleware;
-
 public abstract class Middleware {
     private Middleware next;
 
     /**
      * Builds chains of middleware objects.
      */
-    public static Middleware link(ThrottlingMiddleware throttlingMiddleware, UserExistsMiddleware userExistsMiddleware, RoleCheckMiddleware roleCheckMiddleware, Middleware first, Middleware... chain) {
-        Middleware curr = first;
+    public static Middleware link(Middleware first, Middleware... chain) {
+        Middleware head = first;
         for (Middleware nextInChain: chain) {
-            curr.next = nextInChain;
-            curr = nextInChain;
+            head.next = nextInChain;
+            head = nextInChain;
         }
         return first;
     }
@@ -25,7 +24,6 @@ public abstract class Middleware {
      * last object in chain.
      */
     protected boolean checkNext(String email, String password) {
-        System.out.println("Checking next middleware...");
         if (next == null) {
             return true;
         }

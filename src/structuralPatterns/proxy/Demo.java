@@ -6,4 +6,5 @@ import structuralPatterns.proxy.ProxyImage;
         Image image = new ProxyImage("test_image.jpg");
         image.display();
         image.display();
+        image.display();
     }
