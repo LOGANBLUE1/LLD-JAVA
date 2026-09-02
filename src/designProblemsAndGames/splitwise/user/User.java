@@ -1,14 +1,26 @@
 package designProblemsAndGames.splitwise.user;
 
-//import lombok.Getter;
+import java.util.Objects;
 
-import java.util.HashMap;
-import java.util.Map;
-
-//@Getter
+/**
+ * A user is pure identity - who they are, nothing about what they owe.
+ *
+ * Balances used to live here as lendedTo/borrowedFrom maps, which meant every User held
+ * references to every other User and either side of a debt could be written on its own.
+ * ExpenseManager owns the balance graph now, so a User cannot be pushed out of sync with
+ * its counterpart.
+ */
 public class User {
-    public String getEmail() {
-        return email;
+    private final String id;
+    private final String name;
+    private final String email;
+    private final String phone;
+
+    public User(String id, String name, String email, String phone) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
     }
 
     public String getId() {
@@ -19,51 +31,35 @@ public class User {
         return name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getPhone() {
         return phone;
     }
 
-    public Map<User, Double> getBorrowedFrom() {
-        return borrowedFrom;
-    }
-
-    public Map<User, Double> getLendedTo() {
-        return lendedTo;
-    }
-
-    private final String id;
-    private final String name;
-    private final String email;
-    private final String phone;
-    private final Map<User, Double> borrowedFrom;
-    private final Map<User, Double> lendedTo;
-    //how much this user owes to others (+ve means others owe this user, -ve means this user owes others)
-
-    public User(String id, String name, String email, String phone) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.borrowedFrom = new HashMap<>();
-        this.lendedTo = new HashMap<>();
-    }
-
-    public void addTransaction(User other, double amount) {
-        if(amount > 0) {
-            double originalAmount = this.lendedTo.getOrDefault(other, 0.0);
-            this.lendedTo.put(other, originalAmount + amount);
-        } else {
-            double originalAmount = this.borrowedFrom.getOrDefault(other, 0.0);
-            this.borrowedFrom.put(other, originalAmount - amount);
+    // Users are HashMap keys in the balance graph. Identity comparison happened to work while
+    // every User was built once in main(), but two objects loaded for the same id from a repo
+    // would have kept separate balances.
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
         }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        return Objects.equals(id, ((User) o).id);
     }
 
-    public void showBalances() {
-        for (Map.Entry<User, Double> entry : this.getLendedTo().entrySet()) {
-                System.out.println(this.getName() + " gets ₹" + entry.getValue() + " from " + entry.getKey().getName());
-        }
-        for (Map.Entry<User, Double> entry : this.getBorrowedFrom().entrySet()) {
-            System.out.println(this.getName() + " owes ₹" + (entry.getValue()) + " to " + entry.getKey().getName());
-        }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

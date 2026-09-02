@@ -1,37 +1,45 @@
 package designProblemsAndGames.splitwise;
 
 import designProblemsAndGames.splitwise.expense.Expense;
-import designProblemsAndGames.splitwise.expense.SplitType;
 import designProblemsAndGames.splitwise.user.ExpenseManager;
-import designProblemsAndGames.splitwise.user.User;
 import designProblemsAndGames.splitwise.user.Group;
+import designProblemsAndGames.splitwise.user.User;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
-    public static void addTransaction(User from, User to, double amount) {
-        from.addTransaction(to, amount);
-        to.addTransaction(from, -amount);
-    }
+
     public static void main(String[] args) {
-        User u1 = new User("1", "Alice", "daf", "123");
-        User u2 = new User("2", "Bob", "daf", "456");
-        User u3 = new User("3", "Charlie", "daf", "789");
-        User u4 = new User("4", "David", "daf", "101");
-        Group g1 = new Group("g1", "Trip", Arrays.asList(u1, u2, u3, u4));
+        User alice = new User("1", "Alice", "alice@mail.com", "123");
+        User bob = new User("2", "Bob", "bob@mail.com", "456");
+        User charlie = new User("3", "Charlie", "charlie@mail.com", "789");
+        User david = new User("4", "David", "david@mail.com", "101");
+
+        Group trip = new Group("g1", "Trip", Arrays.asList(alice, bob, charlie, david));
 
         ExpenseManager manager = new ExpenseManager();
+        manager.addGroup(trip);
 
-        manager.addExpense(u1, u2, 100);//100 paid to u2 by u1
-        manager.addGroup(g1);
+        // Alice paid 1000 for herself, Bob and Charlie: 333.34 / 333.33 / 333.33.
+        manager.addExpense(trip, Expense.equal("e1", alice, 1000, List.of(alice, bob, charlie)));
 
-        Expense e1 = new Expense("1", SplitType.EQUAL, u1, 1000, Arrays.asList(u1, u2, u3));
-        manager.showBalances(g1);
+        // Alice paid 1250, Bob owes exactly 370 and Charlie exactly 880.
+        manager.addExpense(trip, Expense.exact("e2", alice, 1250,
+                List.of(bob, charlie), List.of(370.0, 880.0)));
 
-//        u1 1250 2 u2 u3 EXACT 370 880
-//        em.spendExact(List.of(u2, u3), List.of(370.0, 880.0), u1);
+        // David paid 1200 split 40/20/20/20.
+        manager.addExpense(trip, Expense.percent("e3", david, 1200,
+                List.of(alice, bob, charlie, david), List.of(40.0, 20.0, 20.0, 20.0)));
 
-//        u4 1200 4 u1 u2 u3 u4 PERCENT 40 20 20 20
-//        em.spendPercent(List.of(u2, u3, u4), List.of(20.0, 20.0, 20.0), u1, 1200.0);
+        manager.showBalances(trip);
+
+        // Bob pays Alice back - this nets against what he already owes her rather than
+        // being recorded as a separate debt in the other direction.
+        System.out.println();
+        manager.settleUp(trip, bob, alice, 500);
+        System.out.println();
+
+        manager.showBalances(trip);
     }
 }

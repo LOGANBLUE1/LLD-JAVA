@@ -13,16 +13,8 @@ public class Split {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public double getAmount() {
         return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public Split(double amount, User user) {
