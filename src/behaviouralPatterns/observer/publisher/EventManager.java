@@ -1,6 +1,6 @@
 package behaviouralPatterns.observer.publisher;
 
-import behaviouralPatterns.observer.listener.EventListener;
+import behaviouralPatterns.observer.listener.IEventListener;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventManager {
+public class EventManager implements IPublisher{
     // event -->  list of subscribers
-    Map<String, List<EventListener>> listeners = new HashMap<>();
+    Map<String, List<IEventListener>> listeners = new HashMap<>();
 
     public EventManager(String... operations) {
         for (String operation : operations) {
@@ -18,20 +18,20 @@ public class EventManager {
         }
     }
 
-    public void subscribe(String event, EventListener listener) {
-        List<EventListener> users = listeners.get(event);
-        users.add(listener);
+    @Override
+    public void subscribe(String event, IEventListener listener) {
+        listeners.get(event).add(listener);
     }
 
-    public void unsubscribe(String event, EventListener listener) {
-        List<EventListener> users = listeners.get(event);
-        users.remove(listener);
+    @Override
+    public void unsubscribe(String event, IEventListener listener) {
+        listeners.get(event).remove(listener);
     }
 
+    @Override
     public void notify(String event, File file) {
-        List<EventListener> users = listeners.get(event);
-        for (EventListener listener : users) {
-            listener.update(event, file);
+        for (IEventListener subscribers : listeners.get(event)) {
+            subscribers.update(event, file);
         }
     }
 }

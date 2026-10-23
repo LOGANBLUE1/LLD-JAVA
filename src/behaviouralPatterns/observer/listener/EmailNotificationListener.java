@@ -2,7 +2,7 @@ package behaviouralPatterns.observer.listener;
 
 import java.io.File;
 
-public class EmailNotificationListener implements EventListener {
+public class EmailNotificationListener implements IEventListener {
     private String email;
 
     public EmailNotificationListener(String email) {
