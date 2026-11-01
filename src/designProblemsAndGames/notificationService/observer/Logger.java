@@ -1,6 +1,6 @@
 package designProblemsAndGames.notificationService.observer;
 
-import designProblemsAndGames.notificationService.service.NotificationService;
+import designProblemsAndGames.notificationService.NotificationService;
 
 public class Logger implements IObserver {
     private NotificationObservable notificationObservable;
@@ -10,9 +10,9 @@ public class Logger implements IObserver {
         notificationObservable.subscribe(this);
     }
 
-    public Logger(NotificationObservable observable) {
+    public Logger(NotificationObservable topic) {
+        this.notificationObservable = topic;
         notificationObservable.subscribe(this);
-        this.notificationObservable = observable;
     }
 
     public void update() {

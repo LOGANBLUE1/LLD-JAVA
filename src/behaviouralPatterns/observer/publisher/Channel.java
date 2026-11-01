@@ -8,29 +8,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EventManager implements IPublisher{
+public class Channel implements IPublisher{
     // event -->  list of subscribers
-    Map<String, List<IEventListener>> listeners = new HashMap<>();
+    Map<String, List<IEventListener>> subscribers = new HashMap<>();
 
-    public EventManager(String... operations) {
+    public Channel(String... operations) {
         for (String operation : operations) {
-            this.listeners.put(operation, new ArrayList<>());
+            this.subscribers.put(operation, new ArrayList<>());
         }
+    }
+
+    public void postContent() {
+
     }
 
     @Override
     public void subscribe(String event, IEventListener listener) {
-        listeners.get(event).add(listener);
+        subscribers.get(event).add(listener);
     }
 
     @Override
     public void unsubscribe(String event, IEventListener listener) {
-        listeners.get(event).remove(listener);
+        subscribers.get(event).remove(listener);
     }
 
     @Override
     public void notify(String event, File file) {
-        for (IEventListener subscribers : listeners.get(event)) {
+        for (IEventListener subscribers : subscribers.get(event)) {
             subscribers.update(event, file);
         }
     }

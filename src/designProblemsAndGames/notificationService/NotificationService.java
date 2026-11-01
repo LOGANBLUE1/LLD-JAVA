@@ -1,4 +1,4 @@
-package designProblemsAndGames.notificationService.service;
+package designProblemsAndGames.notificationService;
 
 import designProblemsAndGames.notificationService.decorator.INotification;
 import designProblemsAndGames.notificationService.observer.NotificationObservable;
@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationService {
-    private NotificationObservable observable;
+    private NotificationObservable topic;
     private static NotificationService instance = null;
-    private List<INotification> notifications = new ArrayList<>();
+    private List<INotification> notifications = new ArrayList<>();//queue for notifications
 
     private NotificationService() {
-        observable = new NotificationObservable();
+        topic = new NotificationObservable();
     }
 
     public static NotificationService getInstance() {
@@ -24,12 +24,12 @@ public class NotificationService {
 
     // Expose the observable so observers can attach.
     public NotificationObservable getObservable() {
-        return observable;
+        return topic;
     }
 
     // Creates a new Notification and notifies observers.
     public void sendNotification(INotification notification) {
         notifications.add(notification);
-        observable.setNotification(notification);
+        topic.setNotification(notification);
     }
 }

@@ -1,15 +1,15 @@
 package behaviouralPatterns.observer.editor;
 
-import behaviouralPatterns.observer.publisher.EventManager;
+import behaviouralPatterns.observer.publisher.Channel;
 
 import java.io.File;
 
 public class Editor {
-    public EventManager events;
+    public Channel events;
     private File file;
 
     public Editor() {
-        this.events = new EventManager("open", "save");
+        this.events = new Channel("open", "save");
     }
 
     public void openFile(String filePath) {

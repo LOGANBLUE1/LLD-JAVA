@@ -2,11 +2,11 @@ package behaviouralPatterns.observer.listener;
 
 import java.io.File;
 
-public class LogOpenListener implements IEventListener {
-    private File log;
+public class MessageListener implements IEventListener {
+    private String log;
 
-    public LogOpenListener(String fileName) {
-        this.log = new File(fileName);
+    public MessageListener(String fileName) {
+        this.log = fileName;
     }
 
     @Override

@@ -28,9 +28,6 @@ public class DocumentEditor {
     }
 
     public void render(){
-//        if(renderedDocument.isBlank()){
-            doc.render();
-//        }
-
+        doc.render();
     }
 }
